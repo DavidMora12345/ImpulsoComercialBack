@@ -13,7 +13,7 @@
 	<groupId>com.PComercial</groupId>
 	<artifactId>PComercialTest</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>PComercialTest</name>
 	<description>Demo para la propuesta del nuevo comercial</description>
 
