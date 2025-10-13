@@ -57,7 +57,7 @@ public class ClienteController {
         
         return ResponseEntity.ok(PageResponseDTO.of(clientes));
     }
-    
+
     @GetMapping("/search")
     @Operation(summary = "Buscar clientes", description = "Busca clientes por nombre, apellido, cédula o email")
     @PreAuthorize("hasAnyRole('ADMIN', 'RECAUDADOR', 'CATASTRO', 'CONSULTA')")
@@ -79,6 +79,7 @@ public class ClienteController {
         ClienteDTO cliente = clienteService.findById(id);
         return ResponseEntity.ok(ApiResponseDTO.success(cliente));
     }
+
     
     @GetMapping("/cedula/{cedula}")
     @Operation(summary = "Obtener cliente por cédula", description = "Retorna un cliente específico por su cédula")
@@ -142,4 +143,5 @@ public class ClienteController {
         
         return ResponseEntity.ok(PageResponseDTO.of(clientes));
     }
+
 }
