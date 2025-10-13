@@ -1,0 +1,97 @@
+spring:
+  application:
+    name: comercial-api
+  
+  # Configuración de Base de Datos
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5433}/comercial_db
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:postgres}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 5
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+  
+  # Configuración de JPA/Hibernate
+  jpa:
+    hibernate:
+      ddl-auto: validate  # Flyway maneja el schema
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        use_sql_comments: true
+        jdbc:
+          batch_size: 20
+          fetch_size: 50
+        order_inserts: true
+        order_updates: true
+  
+  # Configuración de Flyway
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    locations: classpath:db/migration
+    schemas: clientes,catastros,recaudacion,shared,audit
+    validate-on-migrate: true
+  
+  # Configuración de Jackson (JSON)
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    time-zone: America/Guayaquil
+    default-property-inclusion: non_null
+
+# Configuración del Servidor
+server:
+  port: 8080
+  servlet:
+    context-path: /
+  error:
+    include-message: always
+    include-binding-errors: always
+
+# Configuración de JWT
+jwt:
+  secret: ${JWT_SECRET:404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970}
+  expiration: 86400000  # 24 horas en milisegundos
+
+# Configuración de Swagger/OpenAPI
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true
+    operations-sorter: method
+    tags-sorter: alpha
+
+# Configuración de Logging
+logging:
+  level:
+    root: INFO
+    ec.gob.comercial: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.springframework.security: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  file:
+    name: logs/comercial-api.log
+    max-size: 10MB
+    max-history: 30
+
+# Configuración de Actuator (Monitoreo)
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: when-authorized
