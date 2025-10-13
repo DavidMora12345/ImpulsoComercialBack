@@ -281,17 +281,5 @@ mvn spring-boot:run -Dspring-boot.run.jvmArguments="-Xdebug -Xrunjdwp:transport=
 # O usar React Query Devtools (incluido)
 ```
 
-## 👥 Equipo
-
-- **Arquitecto:** [Nombre]
-- **Tech Lead:** [Nombre]
-- **Desarrolladores:** 8-10 personas
-
-## 📄 Licencia
-
-Propiedad del Municipio
-
----
-
 **Versión:** 1.0.0  
 **Última actualización:** Octubre 2025

@@ -1,4 +1,4 @@
-# Manual de Instalación y Ejecución - Sistema Comercial Municipal
+# Manual de Instalación y Ejecución - Sistema Comercial
 
 ## Requisitos Previos
 
@@ -121,8 +121,6 @@ Este script hace lo siguiente automáticamente:
 3. Inicia el backend en el puerto 8080
 4. Instala dependencias del frontend (si es necesario)
 5. Inicia el frontend en el puerto 3000
-
-**Tiempo estimado:** 2-3 minutos
 
 ### Verificar que Todo Está Corriendo
 
@@ -519,45 +517,6 @@ Asegúrate de que estos puertos estén libres:
 - **3000:** Frontend (Next.js)
 - **8080:** Backend (Spring Boot)
 - **5433:** PostgreSQL (Docker)
-
----
-
-## Recursos Adicionales
-
-### Documentación
-
-- `README.md` - Información general del proyecto
-- `MANUAL_INICIO_SISTEMA.md` - Manual detallado con más opciones
-- `COMANDOS_UTILES.md` - Comandos útiles para copy-paste
-- `GUIA_RAPIDA.md` - Guía rápida de referencia
-
-### Soporte
-
-Si tienes problemas:
-1. Revisa la sección "Solución de Problemas Comunes"
-2. Verifica los logs con `tail -f logs/backend.log` o `tail -f logs/frontend.log`
-3. Ejecuta `./verificar-sistema.sh` para ver el estado de los servicios
-4. Consulta con el equipo de desarrollo
-
----
-
-## Checklist de Verificación
-
-Usa este checklist para asegurarte de que todo está funcionando:
-
-- [ ] Java 21 instalado
-- [ ] Maven 3.9+ instalado
-- [ ] Node.js 20+ instalado
-- [ ] Docker Desktop instalado y corriendo
-- [ ] Repositorio clonado
-- [ ] PostgreSQL corriendo (puerto 5433)
-- [ ] Backend corriendo (puerto 8080)
-- [ ] Frontend corriendo (puerto 3000)
-- [ ] Frontend carga en el navegador (http://localhost:3000)
-- [ ] Backend responde (http://localhost:8080/actuator/health)
-- [ ] Swagger UI funciona (http://localhost:8080/swagger-ui.html)
-
----
 
 **Última actualización:** Octubre 2025  
 **Versión del sistema:** 1.0.0
