@@ -1,0 +1,44 @@
+# Backend (Java/Maven)
+ImpulsoComercialBack/PComercialTest/target/
+ImpulsoComercialBack/PComercialTest/.env
+ImpulsoComercialBack/PComercialTest/logs/
+*.class
+*.jar
+*.war
+*.ear
+*.log
+
+# Frontend (Node/Next.js)
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/.env.local
+frontend/.env.production.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.vercel
+
+# IDEs
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+.project
+.classpath
+.settings/
+
+# OS
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
