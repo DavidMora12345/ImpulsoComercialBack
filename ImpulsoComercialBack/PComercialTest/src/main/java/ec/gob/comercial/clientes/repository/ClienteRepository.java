@@ -1,6 +1,7 @@
 package ec.gob.comercial.clientes.repository;
 
 import ec.gob.comercial.clientes.domain.Cliente;
+import ec.gob.comercial.clientes.dto.ClienteDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -35,7 +36,8 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
      * Verifica si existe un cliente con el email dado
      */
     boolean existsByEmail(String email);
-    
+
+
     /**
      * Búsqueda avanzada de clientes
      * 

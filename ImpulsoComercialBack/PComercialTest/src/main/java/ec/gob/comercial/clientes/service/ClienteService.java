@@ -5,6 +5,8 @@ import ec.gob.comercial.clientes.dto.ClienteDTO;
 import ec.gob.comercial.clientes.dto.ClienteUpdateDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import java.util.List;
+import org.springframework.data.domain.Sort;
 
 /**
  * Servicio para Cliente
@@ -15,7 +17,7 @@ public interface ClienteService {
      * Obtiene todos los clientes activos (paginado)
      */
     Page<ClienteDTO> findAll(Pageable pageable);
-    
+
     /**
      * Busca clientes por nombre, apellido, cédula o email
      */
@@ -55,4 +57,7 @@ public interface ClienteService {
      * Obtiene clientes con discapacidad
      */
     Page<ClienteDTO> findClientesConDiscapacidad(Pageable pageable);
+
+    List<ClienteDTO> findAllSinFiltro(Sort sort);
+
 }

@@ -33,6 +33,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/clientes")
 @RequiredArgsConstructor
@@ -139,4 +141,18 @@ public class ClienteController {
         Page<ClienteDTO> clientes = clienteService.findClientesConDiscapacidad(pageable);
         return ResponseEntity.ok(PageResponseDTO.of(clientes));
     }
+
+    @GetMapping("/all-completo")
+    @PreAuthorize("hasAnyRole('ADMIN','RECAUDADOR','CATASTRO','CONSULTA')")
+    public ResponseEntity<ApiResponseDTO<List<ClienteDTO>>> getAllClientesSinFiltro(
+            @RequestParam(defaultValue = "id") String sortBy,
+            @RequestParam(defaultValue = "ASC") String sortDir
+    ) {
+        Sort sort = sortDir.equalsIgnoreCase("DESC")
+                ? Sort.by(sortBy).descending()
+                : Sort.by(sortBy).ascending();
+        List<ClienteDTO> clientes = clienteService.findAllSinFiltro(sort);
+        return ResponseEntity.ok(ApiResponseDTO.success(clientes));
+    }
+
 }

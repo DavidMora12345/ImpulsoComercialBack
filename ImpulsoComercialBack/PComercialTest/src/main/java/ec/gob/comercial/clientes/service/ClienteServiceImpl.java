@@ -15,6 +15,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import java.util.List;                       // **AGREGAR**
+import org.springframework.data.domain.Sort;
 
 /**
  * Implementación del servicio de Cliente
@@ -137,7 +139,16 @@ public class ClienteServiceImpl implements ClienteService {
         return clienteRepository.findClientesTerceraEdad(pageable)
             .map(clienteMapper::toDTO);
     }
-    
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<ClienteDTO> findAllSinFiltro(Sort sort) {
+        return clienteRepository.findAll(sort)
+                .stream()
+                .map(clienteMapper::toDTO)
+                .toList();
+    }
+
     @Override
     @Transactional(readOnly = true)
     public Page<ClienteDTO> findClientesConDiscapacidad(Pageable pageable) {
