@@ -58,6 +58,6 @@ public interface ClienteService {
      */
     Page<ClienteDTO> findClientesConDiscapacidad(Pageable pageable);
 
-    List<ClienteDTO> findAllSinFiltro(Sort sort);
+    Page<ClienteDTO> findAllSinFiltro(Pageable pageable);
 
 }

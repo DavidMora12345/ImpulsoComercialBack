@@ -142,11 +142,8 @@ public class ClienteServiceImpl implements ClienteService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<ClienteDTO> findAllSinFiltro(Sort sort) {
-        return clienteRepository.findAll(sort)
-                .stream()
-                .map(clienteMapper::toDTO)
-                .toList();
+    public Page<ClienteDTO> findAllSinFiltro(Pageable pageable) {
+        return clienteRepository.findAll(pageable).map(clienteMapper::toDTO);
     }
 
     @Override

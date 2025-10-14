@@ -144,15 +144,19 @@ public class ClienteController {
 
     @GetMapping("/all-completo")
     @PreAuthorize("hasAnyRole('ADMIN','RECAUDADOR','CATASTRO','CONSULTA')")
-    public ResponseEntity<ApiResponseDTO<List<ClienteDTO>>> getAllClientesSinFiltro(
+    public ResponseEntity<PageResponseDTO<ClienteDTO>> getAllClientesSinFiltro(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "100") int size,
             @RequestParam(defaultValue = "id") String sortBy,
             @RequestParam(defaultValue = "ASC") String sortDir
     ) {
+        int safeSize = Math.min(Math.max(size, 1), 500);
         Sort sort = sortDir.equalsIgnoreCase("DESC")
                 ? Sort.by(sortBy).descending()
                 : Sort.by(sortBy).ascending();
-        List<ClienteDTO> clientes = clienteService.findAllSinFiltro(sort);
-        return ResponseEntity.ok(ApiResponseDTO.success(clientes));
+        Pageable pageable = PageRequest.of(page, safeSize, sort);
+        Page<ClienteDTO> clientes = clienteService.findAllSinFiltro(pageable);
+        return ResponseEntity.ok(PageResponseDTO.of(clientes));
     }
 
 }
