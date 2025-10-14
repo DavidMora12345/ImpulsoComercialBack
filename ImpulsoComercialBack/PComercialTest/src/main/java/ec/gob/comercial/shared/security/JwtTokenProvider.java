@@ -100,9 +100,10 @@ public class JwtTokenProvider {
             .parseSignedClaims(token)
             .getPayload();
     }
-    
+
     private Key getSignInKey() {
-        byte[] keyBytes = Decoders.BASE64.decode(secretKey);
-        return Keys.hmacShaKeyFor(keyBytes);
+        byte[] keyBytes = io.jsonwebtoken.io.Decoders.BASE64.decode(secretKey.trim());
+        return io.jsonwebtoken.security.Keys.hmacShaKeyFor(keyBytes); // HS256
     }
+
 }
