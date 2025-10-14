@@ -40,4 +40,15 @@ public abstract class AuditableEntity {
     
     @Column(name = "estado")
     private Integer estado = 1; // 1=Activo, 0=Inactivo
+
+    @PrePersist
+    protected void prePersist() {
+        fechaCreacion = LocalDateTime.now();
+        fechaActualizacion = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    protected void preUpdate() {
+        fechaActualizacion = LocalDateTime.now();
+    }
 }
